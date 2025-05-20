@@ -27,6 +27,15 @@
             outlined
             hide-details
           ></v-text-field>
+          <v-text-field
+            v-model="modelValue.config.proxy"
+            label="Proxy URL"
+            :rules="urlRules"
+            hint="Enter a Proxy URL (e.g., http://proxy.contoso.com:8080)"
+            persistent-hint
+            outlined
+            hide-details
+          ></v-text-field>
         </v-form>
       </v-card-text>
       <v-card-actions>

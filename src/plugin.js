@@ -1,5 +1,6 @@
 const { plugin, logger, pluginPath, resourcesPath } = require("@eniac/flexdesigner")
 const https = require('https')
+import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Store key data
 const keyData = {}
@@ -47,6 +48,10 @@ class HomeAssistantPlugin {
 
       if (data) {
         options.body = JSON.stringify(data)
+      }
+
+      if (this.config.proxy) {
+        options.agent = new HttpsProxyAgent(this.config.proxy);
       }
 
       const req = https.request(url, options, (res) => {
